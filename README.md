@@ -1,6 +1,6 @@
 # EWW-Widgets
 
-[Picture of final result](https://raw.githubusercontent.com/DanL2015/EWW-Widgets/main/Soul%20and%20Shade.png "Soul and Shade")
+![Picture of final result](https://raw.githubusercontent.com/DanL2015/EWW-Widgets/main/Soul%20and%20Shade.png "Soul and Shade")
 
 My personal collection of EWW widgets.<br>
 
