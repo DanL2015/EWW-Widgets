@@ -1,0 +1,561 @@
+$color-white0: #a9b1d6;
+$color-white1: #9aa5ce;
+$color-white2: #c0caf5;
+$color-gray: #cfc9c2;
+$color-black0: #1a1b26;
+$color-black1: #24283b;
+$color-blue: #7aa2f7;
+
+* {
+  all: unset;
+}
+
+scale trough {
+  all: unset;
+  background-color: $color-white1;
+  border-radius: 16px;
+}
+
+scale highlight {
+  background-image: linear-gradient(
+    to top,
+    $color-white0 30%,
+    $color-white1 50%,
+    $color-gray 100% * 50
+  );
+  border-radius: 24px;
+}
+
+.bar {
+  background-color: $color-black0;
+  border-radius: 6px;
+  padding: 0px 8px;
+}
+
+.launcher-button {
+  font-family: Material\-Design\-Iconic\-Font;
+  font-size: 20px;
+  color: $color-white0;
+  border-radius: 6px;
+  margin: 10px 0px;
+}
+
+.control-button {
+  font-family: Material\-Design\-Iconic\-Font;
+  font-size: 20px;
+  color: $color-white0;
+  border-radius: 6px;
+  margin: 10px 0px;
+}
+
+.wifi-tray, .bright-tray, .vol-tray, .bat-tray {
+  font-family: Material\-Design\-Iconic\-Font;
+  font-size: 20px;
+  margin: 0.2rem 0rem;
+}
+
+.bat-tray-text, .bright-tray-text, .vol-tray-text {
+  font-family: Iosevka Nerd Font Mono;
+  margin: 0px;
+  font-size: 14px;
+  color: $color-white0;
+}
+
+.bat-tray {
+  font-family: Iosevka Nerd Font Mono;
+  font-size: 20px;
+  color: $color-white0;
+}
+
+.wifi-tray {
+  color: $color-white0;
+}
+
+.bright-tray {
+  color: $color-white0;
+}
+
+.vol-tray {
+  color: $color-white0;
+}
+
+.wifi-tray-text {
+  font-family: Iosevka Nerd Font Mono;
+  color: $color-white0;
+  font-size: 14px;
+}
+
+.bat-bar {
+  border-radius: 6px;
+}
+
+.bat-bar scale highlight {
+  all: unset;
+  background-color: $color-blue;
+  border-radius: 24px;
+}
+
+.bat-bar scale trough {
+  all: unset;
+  border-radius: 24px;
+  background-color: $color-white2;
+  min-height: 50px;
+  min-width: 10px;
+}
+
+.bright-bar scale highlight {
+  all: unset;
+  background-color: $color-blue;
+  border-radius: 24px;
+}
+
+.bright-bar scale trough {
+  all: unset;
+  background-color: $color-white2;
+  border-radius: 16px;
+  min-height: 50px;
+  min-width: 10px;
+}
+
+.vol-bar scale highlight {
+  all: unset;
+  background-color: $color-blue;
+  border-radius: 24px;
+}
+
+.vol-bar scale trough {
+  all: unset;
+  background-color: $color-white2;
+  border-radius: 16px;
+  min-height: 50px;
+  min-width: 10px;
+}
+
+.time-hour {
+  font-family: Iosevka Nerd Font Mono;
+  color: $color-white0;
+  font-size: 16px;
+}
+
+.time-min {
+  font-family: Iosevka Nerd Font Mono;
+  color: $color-white0;
+  font-size: 16px;
+}
+
+.time-detail-month {
+  font-family: Iosevka Nerd Font Mono;
+  color: $color-white2;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.time-detail-day {
+  font-family: Iosevka Nerd Font Mono;
+  color: $color-white2;
+  font-size: 16px;
+}
+
+.time-container {
+  border-radius: 6px;
+  margin: 10px 0px;
+}
+
+// Workspaces
+.works {
+  font-family: Iosevka Nerd Font;
+  padding: 0rem;
+  background-color: $color-black0;
+  border-radius: 5px;
+  }
+  
+  .0 , .01, .02, .03, .04, .05, .06,
+  .011, .022, .033, .044, .055, .066{
+    margin: 0rem 0.5rem 0rem 0rem;
+    font-size: 1.6em;
+  }
+  
+  /* Unoccupied */
+  .0 {
+  color: $color-gray;
+  }
+  
+  /* Occupied */
+  .01, .02, .03, .04, .05, .06 {
+    color: $color-white1;
+  }
+  
+  /* Focused */
+  .011,
+  .022,
+  .033,
+  .044,
+  .055,
+  .066 {
+    color: $color-blue;
+  }
+
+.tray-container {
+  border-radius: 6px;
+  margin: 10px 0px;
+}
+
+.power-button {
+  font-family: Material\-Design\-Iconic\-Font;
+  font-size: 20px;
+  color: $color-white0;
+  margin: 10px 0px;
+  border-radius: 6px;
+}
+
+.notification-button {
+  font-family: Material\-Design\-Iconic\-Font;
+  font-size: 20px;
+  color: $color-white0;
+  border-radius: 6px;
+  margin: 10px 0px;
+}
+
+//Control Panel
+.control-container {
+  background-color: $color-black0;
+}
+
+.control-top-decoration-container {
+  margin: 5px 10px;
+}
+
+.control-bottom-decoration-container {
+  margin: 5px 10px;
+}
+
+.welcome-message-container {
+  border-radius: 6px;
+  margin: 5px 10px;
+}
+
+.welcome-message {
+  font-family: Iosevka Nerd Font Mono;
+  font-size: 24px;
+  margin: 10px;
+  color: $color-white0;
+}
+
+.control-middle-left-container {
+  margin: 5px 5px 5px 10px;
+}
+
+.control-middle-right-container {
+  margin: 5px 10px 5px 5px;
+}
+
+.profile-container {
+  border-radius: 6px;
+  margin-bottom: 5px;
+}
+
+.profile {
+  border-radius: 100px;
+}
+
+.app-drawer-container {
+  border-radius: 6px;
+  margin-top: 5px;
+  padding: 10px;
+}
+
+.firefox-launcher, .discord-launcher, .thunar-launcher, .terminal-launcher, .code-launcher, .settings-launcher {
+  font-family: Iosevka Nerd Font;
+  font-size: 38px;
+  color: $color-white0;
+}
+
+.time-message-container {
+  border-radius: 6px;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+.time-message-day {
+  font-family: Iosevka Nerd Font;
+  font-size: 18px;
+  color: $color-white1;
+}
+
+.time-message-detail {
+  font-family: Iosevka Nerd Font;
+  font-size: 24px;
+  color: $color-white0;
+}
+
+.time-uptime {
+  font-family: Iosevka Nerd Font;
+  font-size: 14px;
+  color: $color-gray;
+}
+
+.weather-container {
+  margin-top: 5px;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.weather-info {
+  font-family: Iosevka Nerd Font;
+  font-size: 16px;
+  color: $color-white1;
+}
+
+.weather-temp {
+  font-family: Iosevka Nerd Font;
+  font-size: 32px;
+  color: $color-white0;
+}
+
+.weather-icon {
+  font-family: Iosevka Nerd Font;
+  font-size: 46px;
+  margin-right: 24px;
+  color: $color-white0;
+}
+
+.weather-location {
+  font-family: Iosevka Nerd Font;
+  font-size: 20px;
+  color: $color-gray;
+}
+
+.battery-container {
+  border-radius: 6px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.battery-bar-container {
+  margin-left: 5px;
+}
+
+.battery-bar-container scale highlight {
+  all: unset;
+  background-image: linear-gradient(
+    to right,
+    $color-white0 30%,
+    $color-white1 50%,
+    $color-gray 100% * 50
+  );
+  border-radius: 24px;
+}
+
+.battery-bar-container scale trough {
+  all: unset;
+  border-radius: 16px;
+  background-color: $color-white0;
+  min-height: 10px;
+  min-width: 250px;
+}
+
+.spotify-container {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.spotify-overlay-size {
+  min-height: 150px;
+  min-width: 275px;
+}
+
+.spotify-left-container {
+  margin-right: 10px;
+}
+
+.spotify-art {
+  opacity: 0.3;
+}
+
+.spotify-overlay-container {
+  margin: 5px;
+  padding: 10px;
+}
+
+.spotify-title {
+  font-family: Iosevka Nerd Font;
+  font-size: 24px;
+  color: $color-white0
+}
+
+.spotify-artist {
+  font-family: Iosevka Nerd Font;
+  font-size: 24px;
+  color: $color-white1
+}
+
+.spotify-track-contaier {
+  margin: 5px;
+  padding: 10px;
+}
+
+.spotify-track highlight {
+  all: unset;
+  background-color: $color-white0;
+  border-radius: 24px;
+}
+
+.spotify-track trough {
+  all: unset;
+  border-radius: 16px;
+  background-color: $color-gray;
+  min-height: 10px;
+  min-width: 150px;
+}
+
+.spotify-track {
+  margin-right: 5px;
+}
+
+.spotify-track-text {
+  margin-left: 5px;
+  font-family: Iosevka Nerd Font;
+  font-size: 14px;
+  color: $color-white0;
+}
+
+.spotify-right-contaier {
+  margin-left: 10px;
+}
+
+.spotify-prev-button, .spotify-toggle-button, .spotify-next-button {
+  font-family: Material\-Design\-Iconic\-Font;
+  font-size: 20px;
+  color: $color-white0;
+  margin-left: 10px;
+}
+
+.battery-text-container {
+  margin-right: 5px;
+}
+
+.battery-text {
+  font-family: Iosevka Nerd Font;
+  font-size: 16px;
+  color: $color-white0;
+}
+
+.stats-container {
+  margin: 10px;
+  padding: 10px;
+}
+
+.stats-vol-container, .stats-bright-container, .stats-cpu-container, .stats-mem-container {
+  background-color: $color-black1;
+  border-radius: 20px 0px;
+  padding: 10px;
+}
+
+.stats-top-container {
+  margin-bottom: 10px;
+}
+
+.stats-bottom-container {
+  margin-top: 10px;
+}
+
+.stats-vol-progress, .stats-bright-progress, .stats-cpu-progress, .stats-mem-progress {
+  color: $color-gray;
+}
+
+.stats-vol-background, .stats-bright-background, .stats-cpu-background, .stats-mem-background {
+  color: $color-black1;
+}
+
+.stats-vol-icon, .stats-bright-icon, .stats-vol-icon, .stats-mem-icon {
+  font-family: Material\-Design\-Iconic\-Font;
+  font-size: 30px;
+  color: $color-white0;
+}
+
+.shutdown-button, .restart-button, .lock-button, .sleep-button, .logout-button {
+  margin: 20px;
+  font-family: Iosevka Nerd Font;
+  font-size: 32px;
+  color: $color-white1;
+}
+
+//Notification Center
+.notification-layout-box {
+  background-color: $color-black0;
+}
+
+.notification-headers-label {
+  color: $color-white0;
+  border-radius: 6px;
+  margin: 10px;
+  font-size: 20px;
+}
+
+.notification-headers-clear {
+  color: $color-white1;
+  border-radius: 6px;
+  margin: 10px;
+  font-size: 20px;
+}
+
+.notification-card-header-box {
+  background-color: $color-black1;
+  border-radius: 10px 10px 0px 0px;
+  margin-top: 10px;
+  margin-bottom: 2px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.notification-app-name{
+  font-family: Iosevka Nerd Font;
+  font-size: 20px;
+  color: $color-white0;
+  font-size: 20px;
+}
+
+.notification-card-notify-close {
+  font-family: Material\-Design\-Iconic\-Font;
+  font-size: 20px;
+  color: $color-white1;
+}
+
+.notification-card-box {
+  background-color: $color-black1;
+  color: $color-white0;
+  border-radius: 0px 0px 10px 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.notification-summary {
+  font-family: Iosevka Nerd Font;
+  font-size: 20px;
+  color: $color-white0;
+}
+
+.notification-body {
+  font-family: Iosevka Nerd Font;
+  font-size: 16px;
+  color: $color-white1;
+}
+
+.notifications-empty-label {
+  font-family: Iosevka Nerd Font;
+  font-size: 16px;
+  color: $color-white1;
+}
+
+.notification-image {
+  margin-right: 10px;
+}
+
+.notification-card-body {
+  margin-left: 10px;
+}

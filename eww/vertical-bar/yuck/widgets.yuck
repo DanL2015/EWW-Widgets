@@ -1,0 +1,213 @@
+;;main bar widgets
+(defwidget launcher-button[]
+  (button :class "launcher-button" :tooltip "Application Launcher" :onclick "$HOME/.config/rofi/large.sh" ""))
+
+(defwidget info-button[]
+  (button :class "info-button" :tooltip "Display System Info" :onclick "scripts/popup --info" ""))
+
+(defwidget workspaces []
+  (literal :valign "fill" :orientation "v" :content workspace))
+
+(defwidget control-status[]
+  (box :class "control-status" :orientation "v" :space-evenly "false"
+    (eventbox :onhover "eww -c . update batReveal=true" :onhoverlost "eww -c . update batReveal=false"
+      (box :orientation "v" :space-evenly "false" :tooltip "Battery: ${bat}%"
+        (revealer :class "bat-bar" :transition "slideup" :reveal batReveal :duration "500ms"
+          (scale :orientation "v" :min 0 :max 100 :value bat :active "false" :flipped "true" ))
+        (label :class "bat-tray" :text batIcon)))
+    (eventbox :onhover "eww -c . update wifiReveal=true" :onhoverlost "eww -c . update wifiReveal=false"
+      (box :orientation "v" :space-evenly "false" :tooltip "Wifi: ${wifi}"
+        (label :class "wifi-tray" :text wifiIcon)))
+    (eventbox :onhover "eww -c . update brightReveal=true" :onhoverlost "eww -c . update brightReveal=false"
+      (box :orientation "v" :space-evenly "false" :tooltip "Brightness: ${bright}%"
+        (revealer :class "bright-bar" :transition "slideup" :reveal brightReveal :duration "500ms"
+          (scale :orientation "v" :min 0 :max 100 :value bright :active "true" :flipped "true" :onchange "xbacklight -set {}"))
+        (label :class "bright-tray" :text brightIcon)))
+    (eventbox :onhover "eww -c . update volReveal=true" :onhoverlost "eww -c . update volReveal=false"
+      (box :orientation "v" :space-evenly "false" :tooltip "Volume: ${vol}%"
+        (revealer :class "vol-bar" :transition "slideup" :reveal volReveal :duration "500ms"
+          (scale :orientation "v" :min 0 :max 100 :value vol :active "true" :flipped "true" :onchange "pamixer --set-volume {}"))
+        (button :class "vol-tray" :onclick "pamixer --toggle-mute" "${volIcon}")))))
+
+(defwidget control-panel-button[]
+  (button :class "control-button" :tooltip "Display Control Panel" :onclick "scripts/popup --control" ""))
+
+(defwidget time[]
+  (eventbox :onhover "eww -c . update revealTime=true" :onhoverlost "eww -c . update revealTime=false" :tooltip "Date: ${day}, ${month} ${calendarDay}, ${calendarYear}"
+    (box :class "time-container" :orientation "v" :space-evenly "false"
+      (label :class "time-hour" :text hour)
+      (label :class "time-min" :text  min)
+      (revealer :transition "slidedown" :reveal revealTime :duration "500ms"
+        (box :orientation "v" :space-evenly "false"
+          (label :class "time-detail-month" :text "${calendarMonth}")
+          (label :class "time-detail-day" :text "${calendarDay}"))))))
+
+(defwidget traygap[]
+  (box :class "tray-container" :orientation "v" :valign "fill" :height "${trayHeight}"))
+
+(defwidget notification-button[]
+  (button :class "notification-button" :tooltip "${notificationNum} Notifications" :onclick "scripts/popup --notifs" ""))
+
+(defwidget power-button[]
+  (button :class "power-button" :tooltip "Display Powermenu" :onclick "scripts/popup --powermenu" ""))
+
+(defwidget top[]
+  (box :orientation "v" :space-evenly "false" :valign "start"
+    (launcher-button)
+    (workspaces)))
+
+(defwidget bottom[]
+  (box :orientation "v" :space-evenly "false" :valign "end"
+    (control-panel-button)
+    (control-status)
+    (time)
+    (traygap)
+    (notification-button)
+    (power-button)))
+
+(defwidget bar[]
+  (box :class "bar" :orientation "v" :vexpand "false" :hexpand "false"
+    (top)
+    (bottom)))
+
+;;control panel widgets
+(defwidget control-top-decoration[]
+  (box :class "control-top-decoration-container" :orientation "h" :vexpand "false" :hexpand "false" :halign "center"
+    (image :class "control-top-decoration" :image-width "250" :path "assets/top.png")))
+
+(defwidget welcome-message[]
+  (box :class "welcome-message-container" :orientation "h" :vexpand "false" :hexpand "false"
+    (label :class "welcome-message" :text "${welcomeMessage}, ${name}.")))
+
+(defwidget profile[]
+  (box :class "profile-container" :orientation "v" :vexpand "false" :hexpand "false"
+    (image :class "profile" :image-width "100" :path "assets/hollow.png")))
+
+(defwidget app-drawer[]
+  (box :class "app-drawer-container" :orientation "h" :vexpand "false" :hexpand "false"
+    (box :class "app-drawer-left-container" :orientation "v" :vexpand "false" :hexpand "false"
+      (button :class "firefox-launcher" :tooltip "Launch Firefox" :onclick "scripts/launcher --ff" "")
+      (button :class "discord-launcher" :tooltip "Launch Discord" :onclick "scripts/launcher --dc" "ﭮ")
+      (button :class "code-launcher" :tooltip "Launch Visual Studio Code" :onclick "scripts/launcher --cd" ""))
+    (box :class "app-drawer-right-container" :orientation "v" :vexpand "false" :hexpand "false"
+      (button :class "thunar-launcher" :tooltip "Launch Thunar" :onclick "scripts/launcher --fm" "")
+      (button :class "terminal-launcher" :tooltip "Launch Kitty" :onclick "scripts/launcher --tr" "")
+      (button :class "settings-launcher" :tooltip "Launch Settings" :onclick "scripts/launcher --st" "漣"))))
+
+(defwidget time-message[]
+  (box :class "time-message-container" :orientation "v" :vexpand "false" :hexpand "false" :space-evenly "false" :halign "start"
+    (label :class "time-message-day" :halign "start" :text "${day}")
+    (label :class "time-message-detail" :halign "start" :text "${month} ${calendarDay}")
+    (label :class "time-uptime" :halign "start" :text "Up ${uptimeText}")))
+
+(defwidget weather[]
+  (box :class "weather-container" :orientation "v" :vexpand "false" :hexpand "false" :space-evenly "false"
+    (label :class "weather-info" :text "${weatherStat}" :halign "start")
+    (label :class "weather-temp" :text "${weatherTemp}" :halign "start")
+    (label :class "weather-icon" :text "${weatherIcon}" :halign "end")
+    (label :class "weather-location" :text "${weatherCity}, ${weatherCountry}" :halign "end")))
+
+(defwidget control-middle[]
+  (box :class "control-middle-container" :orientation "h" :vexpand "false" :hexpand "false"
+    (box :class "control-middle-left-container" :orientation "v" :vexpand "false" :hexpand "false" :space-evenly "false" :valign "fill"
+      (profile)
+      (app-drawer))
+    (box :class "control-middle-right-container" :orientation "v" :vexpand "false" :hexpand "false" :space-evenly "false" :valign "fill"
+      (time-message)
+      (weather))))
+
+(defwidget spotify[]
+  (box :class "spotify-container" :orientation "h" :vexpand "false" :hexpand "false" :space-evenly "false"
+    (box :class "spotify-left-container" :orientation "v" :vexpand "false" :hexpand "false" :space-evenly "false" :halign "start"
+      (overlay :tooltip "Playing ${title} by ${artist}"
+        (box :class "spotify-overlay-size" :halign "fill")
+        (image :class "spotify-art" :path "${art}" :image-height "300" :halign "start")
+        (box :class "spotify-overlay-container" :orientation "v" :vexpand "false" :hexpand "false" :space-evenly "false" :valign "end" :halign "start"
+          (label :class "spotify-title" :text "${title}" :halign "start")
+          (label :class "spotify-artist" :text "${artist}" :halign "start")
+          (box :class "spotify-track-container" :tooltip "${curSongTime} / ${totSongTime}" :orientation "h" :vexpand "false" :hexpand "false" :space-evenly "false" :halign "start"
+            (scale :class "spotify-track" :min 0 :max 100 :value "${percentTime}" :active "false" :halign "start")
+            (label :class "spotify-track-text" :text "${curSongTime} / ${totSongTime}" :halign "end")))))
+    (box :class "spotify-right-container" :orientation "v" :vexpand "false" :hexpand "false" :space-evenly "true" :halign "end"
+      (button :class "spotify-prev-button" :tooltip "Previous" :onclick "scripts/media prev" "")
+      (button :class "spotify-toggle-button" :tooltip "${status}" :onclick "scripts/media toggle" "${statusIcon}")
+      (button :class "spotify-next-button" :tooltip "Next" :onclick "scripts/media prev" ""))))
+
+(defwidget battery[]
+  (box :class "battery-container" :space-evenly "false" :tooltip "Battery: ${bat}%"
+    (box :class "battery-text-container" :orientation "h"
+      (label :class "battery-text" :text "${batIcon} ${bat}%"))
+    (box :class "battery-bar-container" :orientation "h" :space-evenly "false"
+      (scale :min 0 :max 100 :value bat :active "false"))))
+
+(defwidget stats[]
+  (box :class "stats-container" :orientation "v" :space-evenly "true" :vexpand "false" :hexpand "false"
+    (box :class "stats-top-container" :orientation "h" :space-evely "true" :vexpand "false" :hexpand "false"
+      (eventbox :onscroll "scripts/sysinfo --vol {}" :onclick "pamixer --toggle-mute"
+        (box :class "stats-vol-container" :tooltip "Volume: ${vol}%" :halign "center" :valign "center"
+          (overlay
+            (circular-progress :class "stats-vol-progress" :start-at 0 :value vol :thickness "40" :halign "center")
+            (circular-progress :class "stats-vol-background" :start-at 0 :value 100 :thickness "36" :halign "center")
+            (label :class "stats-vol-icon" :text "${volIcon}" :halign "center"))))
+      (eventbox :onscroll "scripts/sysinfo --bli {}"
+        (box :class "stats-bright-container" :tooltip "Brightness: ${bright}%" :halign "center" :valign "center"
+          (overlay
+            (circular-progress :class "stats-bright-progress" :start-at "0" :value "${bright}" :thickness "40" :halign "center")
+            (circular-progress :class "stats-bright-background" :start-at "0" :value "100" :thickness "36" :halign "center")
+            (label :class "stats-bright-icon" :text "${brightIcon}" :halign "center")))))
+    (box :class "stats-bottom-container" :orientation "h" :space-evenly "true" :vexpand "false" :hexpand "false"
+      (box :class "stats-cpu-container" :tooltip "CPU Usage: ${cpu}%" :halign "center" :valign "center"
+        (overlay
+          (circular-progress :class "stats-cpu-progress" :start-at "0" :value "${cpu}" :thickness "40" :halign "center")
+          (circular-progress :class "stats-cpu-background" :start-at "0" :value "100" :thickness "36" :halign "center")
+          (label :class "stats-vol-icon" :text "" :halign "center")))
+      (box :class "stats-mem-container" :tooltip "RAM Usage: ${ram}GiB" :halign "center" :valign "center"
+        (overlay
+          (circular-progress :class "stats-mem-progress" :start-at "0" :value "${ramPerc}" :thickness "40" :halign "center")
+          (circular-progress :class "stats-mem-background" :start-at "0" :value "100" :thickness "36" :halign "center")
+          (label :class "stats-mem-icon" :text ""))))))
+
+(defwidget powermenu[]
+  (box :class "powermenu-container" :orientation "h" :vexpand "false" :hexpand "false" :halign "center"
+    (button :class "shutdown-button" :onclick "scripts/powermenu --shutdown" "襤")
+    (button :class "restart-button" :onclick "scripts/powermenu --reboot" "")
+    (button :class "lock-button" :onclick "scripts/powermenu --lock" "")
+    (button :class "sleep-button" :onclick "scripts/powermenu --suspend" "鈴")
+    (button :class "logout-button" :onclick "scripts/powermenu --logout" "")))
+
+(defwidget control-bottom-decoration[]
+  (box :class "control-bottom-decoration-container" :orientation "h" :vexpand "false" :hexpand "false" :halign "center"
+    (image :class "control-bottom-decoration" :image-width "300" :path "assets/bottom.png")))
+
+(defwidget control-panel[]
+  (box :class "control-container" :orientation "v" :vexpand "false" :hexpand "false" :space-evenly "false"
+    (control-top-decoration)
+    (welcome-message)
+    (control-middle)
+    (spotify)
+    (battery)
+    (stats)
+    (powermenu)
+    (control-bottom-decoration)))
+
+;;notification widgets
+(defwidget notification-card [?class summary body image ?SL ?M ?L ?R application]
+  (eventbox :onmiddleclick M :onclick L :onrightclick R :class "notification-card-eventbox"
+    (box :space-evenly "false" :orientation "v"
+      (box :space-evenly "true" :orientation "h" :class "notification-card-header-box"
+        (label :class "notification-app-name" :text "${application}" :halign "start")
+        (button :onclick "scripts/logger.zsh rm_id ${SL}" :class "notification-card-notify-close" :halign "end"
+          (label :text "" :tooltip "Remove this notification.")))
+      (box :space-evenly "false" :orientation "h" :class "notification-card-box"
+        (image :image-width "75" :image-height "75" :class "notification-image" :path "${image}")
+        (box :orientation "vertical" :class class :space-evenly false :hexpand true :class "notification-card-body"
+          (box :space-evenly false
+            (label :limit-width 25 :wrap true :text summary :class "notification-summary" :halign "start" :hexpand true))
+          (label :limit-width 30 :wrap true :text body :halign "start" :class "notification-body"))))))
+
+(defwidget notifs-box[]
+  (box :orientation "v" :space-evenly "false" :class "notification-layout-box"
+    (box :space-evenly "true" :class "notification-headers"
+      (label :text "Notifications" :class "notification-headers-label"))
+    (literal :content notificationsCards :class "notification-literal")
+    (button :onclick "scripts/logger.zsh clear" :class "notification-headers-clear" "Clear All " )))

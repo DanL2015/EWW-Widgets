@@ -1,0 +1,40 @@
+;; Widgets
+
+;; Volume var
+(defpoll VOL :interval "1s" `scripts/getVol.sh --vol`)
+(defpoll VOLICON :interval "1s" `scripts/getVol.sh --icon`)
+(defpoll BLIGHT :interval "1s" `scripts/getBlight.sh --blight`)
+(defpoll BLIGHTICON :interval "1s" `scripts/getBlight.sh --icon`)
+
+(defwidget volume[]
+  (box :class "vol_bar" :orientation "h" :spacing 20 :space-evenly "false"
+    (label :class "iconvol" :text VOLICON)
+    (scale :min 0 :max 153 :value VOL :active "false")))
+
+(defwidget blight[]
+  (box :class "blight_bar" :orientation "h" :spacing 20 :space-evenly "false"
+    (label :class "iconblight" :text BLIGHTICON)
+    (scale :min 0 :max 100 :value BLIGHT :active "false")))
+
+(defwidget powermenu[]
+  (box :orientation "h" :space-evenly true :class "powermenu" :halign "center" :valign "center" :spacing 20
+    (button :class "shutdown" :onclick "scripts/powermenuCmds.sh --shutdown" "襤")
+    (button :class "reboot" :onclick "scripts/powermenuCmds.sh --reboot" "")
+    (button :class "lock" :onclick "scripts/powermenuCmds.sh --lock" "")
+    (button :class "suspend" :onclick "scripts/powermenuCmds.sh --suspend" "")
+    (button :class "logout" :onclick "scripts/powermenuCmds.sh --logout" "")))
+
+;; Volume window
+(defwindow volume :stacking "fg" :focusable "false" :screen 1
+  :geometry (geometry :x "860px" :y "860px" :width "200px" :height "50px")
+  (volume))
+
+;;Backlight window
+(defwindow blight :stacking "fg" :focusable "false" :screen 1
+  :geometry (geometry :x "860px" :y "860px" :width "200px" :height "50px")
+  (blight))
+
+;;Powermenu window
+(defwindow powermenu :stacking "fg" :wm-ignore true :screen 1
+  :geometry (geometry :x "0px" :y "0%" :width "20%" :height "10%" :anchor "center center")
+  (powermenu))

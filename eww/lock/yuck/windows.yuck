@@ -1,0 +1,14 @@
+;; Welcome window
+(defwindow welcome :monitor 0 :wm-ignore true :hexpand "false" :vexpand "false" :windowtype "dock" :stacking "fg"
+    :geometry (geometry :x "0" :y "6" :height "50" :width "100" :anchor "top center")
+    (welcome))
+
+;; Music window
+(defwindow music :monitor 0 :wm-ignore true :hexpand "false" :vexpand "false" :windowtype "dock" :stacking "fg"
+    :geometry (geometry :x "0" :y "-6" :height "150" :width "400" :anchor "bottom center")
+    (music-control))
+
+;; Stats window
+(defwindow stats :monitor 0 :wm-ignore true :hexpand "false" :vexpand "false" :windowtype "dock" :stacking "fg"
+    :geometry (geometry :x "-6" :y "0" :height "170" :width "50" :anchor "center right")
+    (stats))

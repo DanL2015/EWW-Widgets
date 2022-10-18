@@ -1,0 +1,153 @@
+$color-white0: #a9b1d6;
+$color-white1: #9aa5ce;
+$color-white2: #c0caf5;
+$color-gray: #cfc9c2;
+$color-black0: #1a1b26;
+$color-black1: #24283b;
+$color-blue: #7aa2f7;
+
+* {
+    all: unset;
+}
+
+.welcome-container {
+    background-color: $color-black0;
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.welcome-greeting {
+    font-family: Iosevka Nerd Font;
+    font-size: 24px;
+    color: $color-white0;
+}
+
+.welcome-name {
+    font-family: Iosevka Nerd Font;
+    font-size: 18px;
+    color: $color-white2;
+}
+
+.music-container {
+    background-color: $color-black0;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.music-art-container {
+    margin: 10px;
+    padding: 10px;
+}
+
+.music-track highlight {
+    background-color: $color-blue;
+    border-radius: 24px;
+}
+
+.music-track trough {
+    border-radius: 16px;
+    background-color: $color-gray;
+    min-height: 5px;
+    min-width: 400px;
+}
+
+.music-sub-container {
+    margin: 20px;
+    padding: 20px;
+}
+
+.music-control-container {
+    margin: 10px;
+    padding: 5px;
+    background-color: $color-black1;
+    border-radius: 10px;
+}
+
+.music-prev-button, .music-toggle-button, .music-next-button {
+    margin: 0px 10px;
+    font-family: Material\-Design\-Iconic\-Font;
+    font-size: 32px;
+    color: $color-white0;
+}
+
+.music-info-container {
+    margin: 10px;
+}
+
+.music-title {
+    font-family: Iosevka Nerd Font;
+    font-size: 16px;
+    color: $color-blue;
+}
+
+.music-artist {
+    font-family: Iosevka Nerd Font;
+    font-size: 12px;
+    color: $color-white2;
+}
+
+.volume-container {
+    background-color: $color-black0;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.volume-scale highlight {
+    background-color: $color-blue;
+    border-radius: 24px;
+}
+
+.volume-scale trough {
+    border-radius: 16px;
+    background-color: $color-gray;
+    min-height: 120px;
+    min-width: 10px;
+}
+
+.volume-icon {
+    font-family: Material\-Design\-Iconic\-Font;
+    font-size: 20px;
+    color: $color-white0;
+}
+
+.stats-container {
+    background-color: $color-black0;
+    border-radius: 10px;
+}
+
+.cpu-container, .mem-container, .temp-container, .bright-container, .bat-container {
+    background-color: $color-black1;
+    border-radius: 40px 0px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.cpu-background, .mem-background, .temp-background, .bright-background, .bat-background {
+    color: $color-black1;
+}
+
+.cpu-progress, .mem-progress, .temp-progress, .bright-progress, .bat-progress {
+    color: $color-gray;
+}
+
+.cpu-icon, .mem-icon, .bright-icon, .bat-icon {
+    margin-right: 5px;
+    font-family: Material\-Design\-Iconic\-Font;
+    font-size: 32px;
+    color: $color-blue;
+}
+
+.temp-icon {
+    margin-right: 5px;
+    font-family: Iosevka Nerd Font;
+    font-size: 32px;
+    color: $color-blue;
+}
+
+.cpu-label, .mem-label, .temp-label, .bright-label, .bat-label {
+    margin-left: 5px;
+    font-family: Iosevka Nerd Font;
+    font-size: 16px;
+    color: $color-white0;
+}

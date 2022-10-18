@@ -1,0 +1,12 @@
+;;windows
+(defwindow bar :monitor 0 :wm-ignore false :hexpand "false" :vexpand "false" :reserve (struts :distance "40px" :side "left") :windowtype "desktop"
+  :geometry (geometry :x "6" :y "6" :height "1068" :width "24px" :anchor "top left")
+  (bar))
+
+(defwindow control-panel :monitor 0 :wm-ignore true :focusable "true" :hexpand "false" :vexpand "false"
+  :geometry (geometry :x "46" :y "6" :height "1068" :width "350" :anchor "top left")
+  (control-panel))
+
+(defwindow notification :monitor 0 :wm-ignore true :focusable "true" :hexpand "false" :vexpand "false"
+  :geometry (geometry :x "46" :y "6" :height "1068" :width "500" :anchor "top left")
+  (notifs-box))
