@@ -15,5 +15,9 @@ Workspace script from [rxyhn](https://github.com/rxyhn)<br>
 Iosevka Nerd Font<br>
 Material Iconic Design Font<br>
 
+
+## Reminders
 Remember to chmod all the scripts.<br>
 Ex: `sudo chmod +x /path/to/scripts`
+
+Change the launcher button in vertical-bar to your own rofi config <br>
