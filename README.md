@@ -9,7 +9,7 @@ Credits:
 Inspired by [rxyhn](https://github.com/rxyhn)<br>
 Notification logger.zsh script from [Syndrizzle](https://github.com/Syndrizzle)<br>
 Workspace script from [rxyhn](https://github.com/rxyhn)<br>
-
+Weather script from [adi1090x](https://github.com/adi1090x)
 
 ## Fonts
 Iosevka Nerd Font<br>
@@ -21,3 +21,4 @@ Remember to chmod all the scripts.<br>
 Ex: `sudo chmod +x /path/to/scripts`
 
 Change the launcher button in vertical-bar to your own rofi config <br>
+Add your own Openweather API Key
