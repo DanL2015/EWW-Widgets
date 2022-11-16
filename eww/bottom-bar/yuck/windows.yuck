@@ -1,0 +1,24 @@
+;;windows
+(defwindow bar :monitor 0 :wm-ignore false :hexpand "false" :vexpand "false" :reserve (struts :distance "36px" :side "bottom") :windowtype "desktop"
+  :geometry (geometry :x "0" :y "0" :height "24" :width "1920" :anchor "bottom left")
+  (bar))
+
+(defwindow notifs :monitor 0 :wm-ignore true :focusable "true" :hexpand "false" :vexpand "false"
+  :geometry (geometry :x "-6" :y "-42" :height "600" :width "500" :anchor "bottom right")
+  (notifs-box))
+
+(defwindow calendar :monitor 0 :wm-ignore true :focusable "true" :hexpand "false" :vexpand "false"
+  :geometry (geometry :x "-6" :y "-42" :height "600" :width "500" :anchor "bottom right")
+  (calendar-box))
+
+(defwindow launcher :monitor 0 :wm-ignore false :focusable "true" :hexpand "false" :vexpand "false" :windowtype "normal" :stacking "fg"
+  :geometry (geometry :x "6" :y "-50" :height "600" :width "500" :anchor "bottom left")
+  (launcher))
+
+(defwindow spotify :monitor 0 :wm-ignore true :focusable "true" :hexpand "false" :vexpand "false"
+  :geometry (geometry :x "200" :y "-42" :height "200" :width "350" :anchor "bottom left")
+  (spotify-player))
+
+(defwindow settings :monitor 0 :wm-ignore true :focusable "true" :hexpand "false" :vexpand "false"
+  :geometry (geometry :x "-250" :y "-42" :height "200" :width "350" :anchor "bottom right")
+  (settings-panel))

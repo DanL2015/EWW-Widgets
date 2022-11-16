@@ -1,0 +1,271 @@
+#!/bin/bash
+
+Cover=/tmp/cover.png
+bkpCover=~/.config/eww/vertical-bar/assets/music.png
+
+function has_player() {
+    if playerctl status &> /dev/null;then
+        [[ $(playerctl status) = "Stopped" ]] && return 1 || return 0
+    else
+        return 1
+    fi
+}
+
+function title() {
+    if has_player;then
+        local title=$(playerctl metadata title)
+        length=$(echo ${#title})
+        if [[ $length -gt 20 ]]; then
+            title=$(echo "$title" | cut -c 1-20)
+            title=$(python -c "print('${title}' + '...')")
+        fi
+        echo $title
+    else
+        echo "Nothing Playing"
+    fi
+}
+
+function cover() {
+    albumart="$(playerctl metadata mpris:artUrl | sed -e 's/open.spotify.com/i.scdn.co/g')"
+    [[ $(playerctl metadata mpris:artUrl) ]] && curl -s "$albumart" --output $Cover || cp $bkpCover $Cover
+    echo "$Cover"
+}
+
+function artist() {
+    if has_player;then
+        local artist=$(playerctl metadata artist)
+        length=$(echo ${#artist})
+        if [[ $length -gt 20 ]]; then
+            artist=$(echo "$artist" | cut -c 1-20)
+            artist=$(python -c "print('${artist}' + '...')")
+        fi
+        echo $artist
+    else
+        echo "Offline"
+    fi
+}
+
+function ttime() {
+    if has_player;then
+        playerctl metadata --format "{{duration(position)}} / {{duration(mpris:length)}}"
+    else
+        echo "--:-- / --:--"
+    fi
+}
+
+function current_time() {
+    if has_player; then
+        playerctl metadata --format "{{duration(position)}}"
+    else
+        echo "--:--"
+    fi
+}
+
+function total_time() {
+    if has_player; then
+        playerctl metadata --format "{{duration(mpris:length)}}"
+    else
+        echo "--:--"
+    fi
+}
+
+function class() {
+    [[ has_player && "$status" = "Playing" ]] && echo "pause" || echo "play"
+    playerctl --follow status | while read -r status; do
+        [[ has_player && "$status" = "Playing" ]] && echo "pause" || echo "play"
+    done;
+}
+
+function icon() {
+    [[ has_player && "$status" = "Playing" ]] && echo "" || echo ""
+    playerctl --follow status | while read -r status; do
+        [[ has_player && "$status" = "Playing" ]] && echo "" || echo ""
+    done
+}
+
+function toggle() {
+    if has_player; then
+        playerctl play-pause
+    fi
+}
+
+function play() {
+    if has_player;then
+        playerctl play
+    fi
+}
+
+function pause() {
+    if has_player;then
+        playerctl pause
+    fi
+}
+
+function stop() {
+    if has_player;then
+        playerctl stop
+    fi
+}
+
+function next() {
+    if has_player;then
+        playerctl next
+    fi
+}
+
+function prev() {
+    if has_player;then
+        playerctl previous
+    fi
+}
+
+function percent() {
+    if has_player;then
+        local pos=$(playerctl position)
+        local len=$(playerctl metadata mpris:length)
+        echo "$pos $len" | awk '{ print ($1 / $2 * 1000000) * 100 }'
+    else
+        echo 0
+    fi
+}
+
+function prev() {
+    if has_player; then
+        playerctl previous
+    fi
+}
+
+function next() {
+    if has_player; then
+        playerctl next
+    fi
+}
+
+function track() {
+    if has_player; then
+        local len=$(playerctl metadata mpris:length)
+        local pos=$1
+        pos=$((len * pos / 100000000))
+        echo "$pos"
+        playerctl position $pos
+    fi
+}
+
+function forward() {
+    if has_player; then
+        local pos=$(playerctl position)
+        local len=$(playerctl metadata mpris:length)
+        pos=$(echo "$pos" | awk '{print ($1 + 5) * 1000000}')
+        len=$(echo "$len" | awk '{print ($1)}')
+        if [[ pos -gt len ]]; then
+            len=$(echo "$len" | awk '{print ($1) / 1000000}')
+            echo $len
+            playerctl position $len
+        else
+            pos=$(echo "$pos" | awk '{print ($1) / 1000000}')
+            echo $pos
+            playerctl position $pos
+        fi
+    fi
+}
+
+function backward() {
+    if has_player; then
+        local pos=$(playerctl position)
+        pos=$(echo "$pos" | awk '{print ($1 - 5) * 1000000}')
+        if [[ pos -lt 0 ]]; then
+            playerctl position 0
+        else
+            pos=$(echo "$pos" | awk '{print ($1) / 1000000}')
+            echo $pos
+            playerctl position $pos
+        fi
+    fi
+}
+
+function shuffle() {
+    if has_player; then
+        playerctl shuffle toggle
+    fi
+}
+
+function shufflecolor() {
+    echo "#414868"
+    playerctl --follow shuffle | while read -r shuffle; do
+        if has_player; then
+            case $shuffle in
+                "Off") echo "#414868";;
+                "On") echo "#7aa2f7";;
+            esac
+        else
+            echo "#414868"
+        fi
+    done
+}
+
+function loop() {
+    if has_player; then
+        case $(playerctl loop) in
+            "None") playerctl loop Track;;
+            "Track") playerctl loop Playlist;;
+            "Playlist") playerctl loop None;;
+        esac
+    fi
+}
+
+function loopicon() {
+    echo ""
+    playerctl --follow loop | while read -r loop; do
+        if has_player; then
+            case $loop in
+                "None") echo "";;
+                "Track") echo "";;
+                "Playlist") echo "";;
+            esac
+        else
+            echo ""
+        fi
+    done
+}
+
+function loopcolor() {
+    echo "#414868"
+    playerctl --follow loop | while read -r loop; do
+        if has_player; then
+            case $loop in
+                "None") echo "#414868";;
+                "Track") echo "#7aa2f7";;
+                "Playlist") echo "#7aa2f7";;
+            esac
+        else
+            echo "#414868"
+        fi
+    done
+}
+
+case "$1" in
+    "title") title;;
+    "artist") artist;;
+    "time") ttime;;
+    "current-time") current_time;;
+    "total-time") total_time;;
+    "toggle") toggle;;
+    "icon") icon;;
+    "percent") percent;;
+    "play") play;;
+    "pause") pause;;
+    "stop") stop;;
+    "prev") prev;;
+    "next") next;;
+    "class") class;;
+    "cover") cover;;
+    "track") track "$2";;
+    "forward") forward;;
+    "backward") backward;;
+    "shuffle") shuffle;;
+    "shufflecolor") shufflecolor;;
+    "loop") loop;;
+    "loopicon") loopicon;;
+    "loopcolor") loopcolor;;
+    *) echo "Unrecognized command";;
+esac
