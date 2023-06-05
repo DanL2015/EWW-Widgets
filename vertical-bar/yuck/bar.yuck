@@ -1,0 +1,59 @@
+;;main bar widgets
+(defwidget launcher-button[]
+  (button :class "launcher-button" :tooltip "Application Launcher" :onclick "$HOME/.config/rofi/large.sh" ""))
+
+(defwidget workspaces []
+  (literal :valign "fill" :content workspace))
+
+; A generic widget for our tray with a revealing bar
+(defwidget tray-icon [?reveal ?revealVar name val icon isActive ?onChange ?onClick iconType]
+  (eventbox :onhover "${EWW_CMD} update ${revealVar}=true" :onhoverlost "${EWW_CMD} update ${revealVar}=false"
+    (box :orientation "v" :space-evenly "false" :tooltip "${name}: ${val}%"
+      (revealer :class "tray-bar" :transition "slideup" :reveal "${reveal}" :duration "500ms"
+        (scale :orientation "v" :min 0 :max 100 :value {val == "" ? 0 : val} :active "${isActive}" :flipped "true" :onchange "${onChange}"))
+      (button :class "tray-${iconType}-icon" :onclick "${onClick}" "${icon}"))))
+
+(defwidget control-status[]
+  (box :class "tray-container" :orientation "v" :space-evenly "false" :halign "center"
+    (tray-icon :reveal "${batReveal}" :revealVar "batReveal" :name "Battery" :val "${bat}" :icon "${batIcon}" :iconType "nerd" :isActive false)
+    (box :orientation "v" :space-evenly "false" :tooltip "Wifi: ${wifi}"
+      (label :class "tray-mat-icon" :text "${wifiIcon}"))
+    (tray-icon :reveal "${brightReveal}" :revealVar "brightReveal" :name "Brightness" :val "${bright}" :icon "${brightIcon}" :iconType "mat" :isActive true :onChange "xbacklight -set {}")
+    (tray-icon :reveal "${volReveal}" :revealVar "volReveal" :name "Volume" :val "${vol}" :icon "${volIcon}" :iconType "mat" :isActive true :onChange "pamixer --set-volume {}" :onClick "pamixer --toggle-mute")))
+
+(defwidget control-panel-button[]
+  (button :class "control-button" :tooltip "Display Control Panel" :onclick "${EWW_CMD} update cPanel=0 && ${EWW_CMD} update animatePanel=0 && scripts/popup panel" ""))
+
+(defwidget time[]
+  (eventbox :onhover "${EWW_CMD} update revealTime=true" :onhoverlost "${EWW_CMD} update revealTime=false" :onclick "${EWW_CMD} update cPanel=1 && ${EWW_CMD} update animatePanel=0 && scripts/popup panel" :tooltip "Date: ${day}, ${month} ${calendarDay}, ${calendarYear}"
+    (box :class "time-container" :orientation "v" :space-evenly "false"
+      (label :class "time-hour" :text hour)
+      (label :class "time-min" :text  min)
+      (revealer :transition "slidedown" :reveal revealTime :duration "500ms"
+        (box :orientation "v" :space-evenly "false"
+          (label :class "time-detail-month" :text "${calendarMonth}")
+          (label :class "time-detail-day" :text "${calendarDay}"))))))
+
+(defwidget notification-button[]
+  (button :class "notification-button" :tooltip "${notificationNum} Notifications" :onclick "${EWW_CMD} update cPanel=1 && ${EWW_CMD} update animatePanel=0 && scripts/popup panel" ""))
+
+(defwidget power-button[]
+  (button :class "power-button" :tooltip "Display Powermenu" :onclick "scripts/popup powermenu" ""))
+
+(defwidget top[]
+  (box :orientation "v" :space-evenly "false" :valign "start"
+    (launcher-button)
+    (workspaces)))
+
+(defwidget bottom[]
+  (box :orientation "v" :space-evenly "false" :valign "end"
+    (control-panel-button)
+    (control-status)
+    (time)
+    (notification-button)
+    (power-button)))
+
+(defwidget bar[]
+  (box :class "bar" :orientation "v"
+    (top)
+    (bottom)))

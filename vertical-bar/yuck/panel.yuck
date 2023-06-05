@@ -1,0 +1,28 @@
+(defwidget top-decoration[]
+  (box :class "decoration-container" :orientation "h" :halign "center"
+    (image :image-width "250" :path "assets/top.png")))
+
+(defwidget bottom-decoration[]
+  (box :class "decoration-container" :orientation "h" :halign "center"
+    (image :image-width "300" :path "assets/bottom.png")))
+
+(defwidget panel-switch[]
+  (box :class "panel-switch-container" :height "35" :width "350" :halign "center"
+    (button :class {cPanel == 0 ? "panel-switch-on-button" : "panel-switch-off-button"} :onclick "${EWW_CMD} update cPanel=0 && ${EWW_CMD} update animatePanel=1" "Control Panel")
+    (button :class {cPanel == 1 ? "panel-switch-on-button" : "panel-switch-off-button"} :onclick "${EWW_CMD} update cPanel=1 && ${EWW_CMD} update animatePanel=1" "Setting Panel")))
+
+(defwidget panel[]
+  (box :class "background" :orientation "v" :width "350" :height "1068" :space-evenly "false"
+    (top-decoration)
+    (panel-switch)
+    (overlay
+      (box :width "350" :height "900")
+      (box :class "s${cPanel}${animatePanel}"
+        (setting-panel))
+      (box :class "c${cPanel}${animatePanel}"
+        (control-panel)))
+    (bottom-decoration)))
+
+(defwindow panel :monitor 0 :wm-ignore true :focusable "true"
+  :geometry (geometry :x "46" :y "6" :height "1068" :width "350" :anchor "top left")
+  (panel))

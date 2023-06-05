@@ -1,0 +1,273 @@
+@import "global.scss";
+
+.panel-container {
+  background-color: $color-black0;
+  border-radius: 6px;
+}
+
+.panel-switch-container {
+  margin: 0px 10px;
+}
+
+.panel-switch-on-button {
+  font-family: $display-font;
+  font-size: 10px;
+  background-color: $color-white0;
+  color: $color-black0;
+  padding: 5px;
+  margin: 5px 10px;
+  border-radius: 6px;
+}
+
+.panel-switch-off-button {
+  font-family: $display-font;
+  font-size: 10px;
+  background-color: $color-black1;
+  color: $color-white0;
+  padding: 5px;
+  margin: 5px 10px;
+  border-radius: 6px;
+}
+
+.decoration-container {
+  margin: 10px;
+}
+
+.welcome-message-container {
+  border-radius: 6px;
+  margin: 5px 10px;
+}
+
+.welcome-message {
+  font-family: $display-font;
+  font-size: 24px;
+  margin: 10px;
+  color: $color-white0;
+}
+
+.control-middle-left-container {
+  margin: 5px 5px 5px 10px;
+}
+
+.control-middle-right-container {
+  margin: 5px 10px 5px 5px;
+}
+
+.profile-container {
+  border-radius: 6px;
+  margin-bottom: 5px;
+}
+
+.profile {
+  border-radius: 100px;
+}
+
+.app-drawer-container {
+  border-radius: 6px;
+  margin-top: 5px;
+  padding: 10px;
+}
+
+.nerd-launcher {
+  font-family: $nerd-icon-font;
+  font-size: 38px;
+  margin: 0 10 0 0;
+  color: $color-white0;
+}
+.mat-launcher {
+  font-family: $mat-icon-font;
+  font-size: 38px;
+  color: $color-white0;
+}
+
+.time-message-container {
+  border-radius: 6px;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+.time-message {
+  font-family: $display-font;
+  font-size: 24px;
+  color: $color-white1;
+}
+
+.time-uptime {
+  font-family: $display-font;
+  font-size: 14px;
+  color: $color-gray;
+}
+
+.weather-container {
+  margin-top: 5px;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.weather-info {
+  font-family: $display-font;
+  font-size: 16px;
+  color: $color-white1;
+}
+
+.weather-temp {
+  font-family: $display-font;
+  font-size: 32px;
+  color: $color-white0;
+}
+
+.weather-icon {
+  font-family: $nerd-icon-font;
+  font-size: 46px;
+  margin-right: 10px;
+  color: $color-white0;
+}
+
+.weather-location {
+  font-family: $display-font;
+  font-size: 20px;
+  color: $color-gray;
+}
+
+.spotify-container {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.spotify-overlay-size {
+  min-height: 150px;
+  min-width: 275px;
+  border-radius: 6px;
+}
+
+.spotify-left-container {
+  margin-right: 10px;
+}
+
+.spotify-art {
+  opacity: 0.2;
+}
+
+.spotify-info-container {
+  margin: 5px;
+  padding: 10px;
+}
+
+.spotify-title {
+  font-family: $display-font;
+  font-size: 24px;
+  color: $color-white0;
+}
+
+.spotify-artist {
+  font-family: $display-font;
+  font-size: 24px;
+  color: $color-white1;
+}
+
+.spotify-track highlight {
+  all: unset;
+  background-color: $color-white0;
+  border-radius: 24px;
+}
+
+.spotify-track trough {
+  all: unset;
+  border-radius: 16px;
+  background-color: $color-black1;
+  min-height: 10px;
+  min-width: 150px;
+}
+
+.spotify-track {
+  margin-right: 5px;
+}
+
+.spotify-track-text {
+  margin-left: 5px;
+  font-family: $display-font;
+  font-size: 14px;
+  color: $color-white0;
+}
+
+.spotify-right-contaier {
+  margin-left: 10px;
+}
+
+.spotify-prev-button,
+.spotify-toggle-button,
+.spotify-next-button {
+  font-family: $mat-icon-font;
+  font-size: 20px;
+  color: $color-white0;
+  margin-left: 10px;
+}
+
+.stats-container {
+  margin: 10px;
+  padding: 10px;
+}
+
+.stat-container {
+  background-color: $color-black2;
+  border-radius: 25px 0px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.stat-progress {
+  color: $color-white1;
+  background-color: $color-black0;
+}
+
+.stat-background {
+  color: $color-gray;
+}
+
+.stat-mat-icon {
+  font-family: $mat-icon-font;
+  font-size: 30px;
+  color: $color-black0;
+}
+
+.stats-nerd-icon {
+  font-family: $mat-icon-font;
+  font-size: 30px;
+  color: $color-black0;
+}
+
+.stat-bat {
+  margin: 10px;
+}
+
+.stat-bat highlight {
+  all: unset;
+  background-image: linear-gradient(
+    to bottom,
+    $color-green 20%,
+    $color-red 80%
+  );
+  border-radius: 6px;
+}
+
+.stat-bat trough {
+  all: unset;
+  border-radius: 20px;
+  background-color: $color-gray;
+  min-height: 100px;
+  min-width: 50px;
+}
+
+.stat-bat-text {
+  font-size: 16px;
+  color: $color-white0;
+  border-radius: 6px;
+}
+
+.stat-bat-container {
+  padding: 5px;
+  background-color: $color-black2;
+  margin: 15px 20px;
+  border-radius: 6px;
+}

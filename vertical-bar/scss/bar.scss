@@ -1,0 +1,177 @@
+@import "global.scss";
+
+.bar {
+  background-color: $color-black0;
+  border-radius: 6px;
+  padding: 0px 8px;
+}
+
+.launcher-button {
+  font-family: $mat-icon-font;
+  font-size: 20px;
+  color: $color-white0;
+  border-radius: 6px;
+  margin: 10px 0px 5px 0px;
+}
+
+.control-button {
+  font-family: $mat-icon-font;
+  font-size: 20px;
+  color: $color-white0;
+  border-radius: 6px;
+  margin: 5px 0px;
+}
+
+.tray-container {
+  border-radius: 6px;
+  margin: 10px -5px;
+  padding: 5px;
+  background-color: $color-black2;
+}
+
+.tray-mat-icon {
+  font-family: $mat-icon-font;
+  font-size: 20px;
+  margin: 0.2rem 0rem;
+  color: $color-white0;
+}
+
+.tray-nerd-icon {
+  font-family: $nerd-icon-font;
+  font-size: 20px;
+  margin: 0.2rem 0rem;
+  color: $color-white0;
+}
+
+.tray-bar {
+  border-radius: 6px;
+}
+
+.tray-bar scale highlight {
+  all: unset;
+  background-color: $color-blue;
+  border-radius: 24px;
+}
+
+.tray-bar scale trough {
+  all: unset;
+  border-radius: 24px;
+  background-color: $color-black1;
+  min-height: 50px;
+  min-width: 10px;
+}
+
+.time-hour {
+  font-family: $display-font;
+  color: $color-white0;
+  font-size: 16px;
+}
+
+.time-min {
+  font-family: $display-font;
+  color: $color-white0;
+  font-size: 16px;
+}
+
+.time-detail-month {
+  font-family: $display-font;
+  color: $color-white2;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.time-detail-day {
+  font-family: $display-font;
+  color: $color-white2;
+  font-size: 16px;
+}
+
+.time-container {
+  border-radius: 6px;
+  margin: 5px 0px;
+}
+
+// Workspaces
+// go to ./scripts/workspace for a better description of these values
+.works {
+  font-family: $nerd-icon-font;
+  padding: 0rem;
+  background-color: $color-black2;
+  margin: 5px -5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.00,
+.010,
+.020,
+.030,
+.040,
+.050,
+.060,
+.001,
+.002,
+.003,
+.004,
+.005,
+.006,
+.0101,
+.0202,
+.0303,
+.0404,
+.0505,
+.0606 {
+  padding: 0em 0.35em 0em 0em;
+  font-size: 1.6em;
+}
+
+/* Unoccupied */
+.00 {
+  color: $color-black1;
+}
+
+/* Occupied */
+.010,
+.020,
+.030,
+.040,
+.050,
+.060 {
+  color: $color-white1;
+}
+
+/* Focused */
+.001,
+.002,
+.003,
+.004,
+.005,
+.006 {
+  color: $color-blue;
+}
+
+/* Focused and Occupied */
+.0101,
+.0202,
+.0303,
+.0404,
+.0505,
+.0606 {
+  color: $color-blue;
+}
+
+.power-button {
+  font-family: $mat-icon-font;
+  font-size: 20px;
+  color: $color-white0;
+  margin: 5px 0px 10px 0px;
+  border-radius: 6px;
+}
+
+.notification-button {
+  font-family: $mat-icon-font;
+  font-size: 20px;
+  color: $color-white0;
+  border-radius: 6px;
+  margin: 5px 0px;
+}

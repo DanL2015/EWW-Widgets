@@ -1,0 +1,98 @@
+;;control panel widgets
+
+(defwidget welcome-message[]
+  (box :class "welcome-message-container" :orientation "h" :width "350" :halign "center"
+    (label :class "welcome-message" :text "${welcomeMessage}, ${name}.")))
+
+(defwidget profile[]
+  (box :class "profile-container" :orientation "v"
+    (image :class "profile" :image-width "100" :path "assets/hollow.png")))
+
+(defwidget app-drawer[]
+  (box :class "app-drawer-container" :orientation "h"
+    (box :class "app-drawer-left-container" :orientation "v"
+      (button :class "nerd-launcher" :tooltip "Launch Firefox" :onclick "scripts/launcher ff" "󰈹")
+      (button :class "nerd-launcher" :tooltip "Launch Discord" :onclick "scripts/launcher dc" "󰙯")
+      (button :class "nerd-launcher" :tooltip "Launch Visual Studio Code" :onclick "scripts/launcher cd" "󰨞"))
+    (box :class "app-drawer-right-container" :orientation "v"
+      (button :class "nerd-launcher" :tooltip "Launch Thunar" :onclick "scripts/launcher fm" "󰉋")
+      (button :class "nerd-launcher" :tooltip "Launch Kitty" :onclick "scripts/launcher tr" "󰆍")
+      (button :class "mat-launcher" :tooltip "Launch Settings" :onclick "scripts/launcher st" ""))))
+
+(defwidget time-message[]
+  (box :class "time-message-container" :orientation "v" :space-evenly "false" :halign "start"
+    (label :class "time-message" :halign "start" :text "${day}, ${month} ${calendarDay}")
+    (label :class "time-uptime" :halign "start" :text "Up ${uptimeText}")))
+
+(defwidget weather[]
+  (box :class "weather-container" :orientation "v" :space-evenly "false"
+    (label :class "weather-info" :text "${weatherStat}" :halign "start")
+    (label :class "weather-temp" :text "${weatherTemp}" :halign "start")
+    (label :class "weather-icon" :text "${weatherIcon}" :halign "end")
+    (label :class "weather-location" :text "${weatherCity}, ${weatherCountry}" :halign "end")))
+
+(defwidget control-middle[]
+  (box :class "control-middle-container" :orientation "h" :width "350" :halign "center"
+    (box :class "control-middle-left-container" :orientation "v" :space-evenly "false" :valign "fill"
+      (profile)
+      (app-drawer))
+    (box :class "control-middle-right-container" :orientation "v" :space-evenly "false" :valign "fill"
+      (time-message)
+      (weather))))
+
+(defwidget spotify[]
+  (box :class "spotify-container" :orientation "h" :space-evenly "false" :width "350" :halign "center"
+    (box :class "spotify-left-container" :orientation "v" :space-evenly "false" :halign "start"
+      (overlay :tooltip "Playing ${title} by ${artist}"
+        (box :class "spotify-overlay-size" :halign "fill")
+        (image :class "spotify-art" :path "${art}" :image-height "300" :halign "start")
+        (box :class "spotify-info-container" :orientation "v"
+          (box :orientation "v"
+            (label :class "spotify-title" :text "${title}" :limit-width "20" :halign "start")
+            (label :class "spotify-artist" :text "${artist}" :limit-width "15" :halign "start"))
+          (box :class "spotify-track-container" :tooltip "${curSongTime} / ${totSongTime}" :orientation "h" :space-evenly "false" :halign "start" :valign "end"
+            (scale :class "spotify-track" :min 0 :max 100 :value {percentTime == "" ? 0 : percentTime} :active "true" :halign "start" :onchange "scripts/media track {}")
+            (label :class "spotify-track-text" :text "${curSongTime} / ${totSongTime}" :halign "end")))))
+    (box :class "spotify-right-container" :orientation "v" :space-evenly "true" :halign "end"
+      (button :class "spotify-prev-button" :tooltip "Previous" :onclick "scripts/media prev" "")
+      (button :class "spotify-toggle-button" :tooltip "${status}" :onclick "scripts/media toggle" "${statusIcon}")
+      (button :class "spotify-next-button" :tooltip "Next" :onclick "scripts/media prev" ""))))
+
+(defwidget stat[?onScroll ?onClick name val icon iconType]
+  (eventbox :onscroll "${onScroll}" :onclick "${onClick}"
+    (box :class "stat-container" :tooltip "${name}: ${val}%" :halign "center" :valign "center"
+      (overlay
+        (circular-progress :class "stat-progress" :start-at 0 :value {val == "" ? 0 : val} :thickness "40" :halign "center")
+        (circular-progress :class "stat-background" :start-at 0 :value 100 :thickness "36" :halign "center")
+        (label :class "stat-${iconType}-icon" :text "${icon}" :halign "center")))))
+
+(defwidget stats[]
+  (box :class "stats-container" :orientation "h" :space-evenly "false" :width "350" :halign "center"
+    (box :orientation "v" :space-evenly "true"
+      (box :orientation "h" :space-evenly "true"
+        (stat :onScroll "scripts/sysinfo vol {}" :onClick "pamixer --toggle-mute" :name "Volume" :val "${vol}" :icon "${volIcon}" :iconType "mat")
+        (stat :onScroll "scripts/sysinfo bli {}" :name "Brightness" :val "${bright}" :icon "${brightIcon}" :iconType "mat"))
+      (box :orientation "h" :space-evenly "true"
+        (stat :name "CPU Usage" :val "${cpu}" :icon "" :iconType "mat")
+        (stat :name "RAM Usage" :val "${ram}" :icon "" :iconType "mat")))
+    (overlay
+      (scale :class "stat-bat" :flipped "true" :value "${bat}" :min "0" :max "100" :active "false" :orientation "v")
+      (box :class "stat-bat-container" :orientation "v" :valign "end" :halign "center"
+        (label :class "stat-bat-text" :halign "center" :text "BAT")
+        (label :class "stat-bat-text" :halign "center" :text "${bat}%")))))
+
+(defwidget power-panel[]
+  (box :orientation "h" :halign "center" :width "350"
+    (button :class "powermenu-button" :tooltip "Shutdown" :onclick "scripts/powermenu shutdown" "󰐥")
+    (button :class "powermenu-button" :tooltip "Reboot" :onclick "scripts/powermenu reboot" "󰑐")
+    (button :class "powermenu-button" :tooltip "Lock" :onclick "scripts/powermenu lock" "󰌾")
+    (button :class "powermenu-button" :tooltip "Suspend" :onclick "scripts/powermenu suspend" "󰏧")
+    (button :class "powermenu-button" :tooltip "Logout" :onclick "scripts/powermenu logout" "󰍃")))
+
+(defwidget control-panel[]
+  (box :orientation "v" :space-evenly "false" :width "350" :halign "center"
+    (welcome-message)
+    (control-middle)
+    (spotify)
+    (stats)
+    (power-panel)))

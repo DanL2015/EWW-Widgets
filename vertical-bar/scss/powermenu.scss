@@ -1,0 +1,14 @@
+@import "global.scss";
+
+.powermenu-container {
+  background-color: $color-black0;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.powermenu-button {
+  margin: 20px 25px 20px 20px;
+  font-family: $nerd-icon-font;
+  font-size: 32px;
+  color: $color-white0;
+}

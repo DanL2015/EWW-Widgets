@@ -1,0 +1,76 @@
+@import "global.scss";
+
+.notification-layout-box {
+  background-color: $color-black0;
+  margin: 10px 20px;
+}
+
+.notification-headers-label {
+  color: $color-white0;
+  border-radius: 6px;
+  margin: 10px;
+  font-size: 20px;
+}
+
+.notification-headers-clear {
+  color: $color-black0;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: $color-white0;
+}
+
+.notification-card-header-box {
+  background-color: $color-black1;
+  border-radius: 10px 10px 0px 0px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 5px;
+}
+
+.notification-app-name {
+  font-family: $display-font;
+  font-size: 20px;
+  color: $color-white0;
+  font-size: 20px;
+}
+
+.notification-card-notify-close {
+  font-family: $mat-icon-font;
+  font-size: 20px;
+  color: $color-white1;
+}
+
+.notification-card-box {
+  background-color: $color-black1;
+  color: $color-white0;
+  border-radius: 0px 0px 10px 10px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.notification-summary {
+  font-family: $display-font;
+  font-size: 20px;
+  color: $color-white0;
+}
+
+.notification-body {
+  font-family: $display-font;
+  font-size: 16px;
+  color: $color-white1;
+}
+
+.notifications-empty-label {
+  font-family: $display-font;
+  font-size: 16px;
+  color: $color-white1;
+}
+
+.notification-card-body {
+  margin: 10px;
+}

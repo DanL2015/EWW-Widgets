@@ -1,0 +1,7 @@
+(defwidget powermenu[]
+  (box :class "powermenu-container" :orientation "h" :halign "center" :valign "fill"
+    (button :class "powermenu-button" :onclick "scripts/powermenu shutdown" "󰐥")
+    (button :class "powermenu-button" :onclick "scripts/powermenu reboot" "󰑐")
+    (button :class "powermenu-button" :onclick "scripts/powermenu lock" "󰌾")
+    (button :class "powermenu-button" :onclick "scripts/powermenu suspend" "󰏧")
+    (button :class "powermenu-button" :onclick "scripts/powermenu logout" "󰍃")))

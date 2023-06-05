@@ -1,0 +1,80 @@
+@import "global.scss";
+
+@keyframes slide-to-left {
+  from {
+    margin-left: 0px;
+  }
+
+  to {
+    margin-left: -700px;
+  }
+}
+
+@keyframes slide-from-right {
+  from {
+    margin-right: -700px;
+  }
+
+  to {
+    margin-right: 0px;
+  }
+}
+
+@keyframes slide-to-right {
+  from {
+    margin-right: 0px;
+  }
+
+  to {
+    margin-right: -700px;
+  }
+}
+
+@keyframes slide-from-left {
+  from {
+    margin-left: -700px;
+  }
+
+  to {
+    margin-left: 0px;
+  }
+}
+
+//c01 and s01 means have control panel be shown and animate
+.c01 {
+  animation-name: slide-from-left;
+  animation-duration: 1s;
+}
+
+.s01 {
+  margin-right: -700px;
+  animation-name: slide-to-right;
+  animation-duration: 1s;
+}
+
+//c11 and s11 means have setting panel be shown and animate
+.c11 {
+  margin-left: -700px;
+  animation-name: slide-to-left;
+  animation-duration: 1s;
+}
+
+.s11 {
+  animation-name: slide-from-right;
+  animation-duration: 1s;
+}
+
+//c00 and s00 mean have control panel shown and no animation
+.s00 {
+  margin-right: -700px;
+}
+
+//c10 and s10 mean have setting panel shown and no animation
+.c10 {
+  margin-left: -700px;
+}
+
+.background {
+  background-color: $color-black0;
+  border-radius: 6px;
+}

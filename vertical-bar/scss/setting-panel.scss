@@ -1,0 +1,130 @@
+@import "global.scss";
+
+.setting-on-button-container {
+  background-color: $color-white0;
+  border-radius: 6px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.setting-off-button-container {
+  background-color: $color-black1;
+  border-radius: 6px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.setting-separator {
+  background-color: $color-black2;
+  padding: 2px;
+  border-radius: 6px;
+  margin: 0px 5px;
+}
+
+.setting-on-button-text {
+  font-family: $display-font;
+  font-size: 10px;
+  color: $color-black1;
+  margin: 15px;
+}
+
+.setting-off-button-text {
+  font-family: $display-font;
+  font-size: 10px;
+  color: $color-black0;
+  margin: 15px;
+}
+
+.setting-mat-button {
+  font-family: $mat-icon-font;
+  font-size: 24px;
+  color: $color-black2;
+}
+
+.setting-nerd-button {
+  font-family: $nerd-icon-font;
+  font-size: 24px;
+  color: $color-black2;
+}
+
+.settings-container {
+  margin: 5px 10px;
+}
+
+.stat-graph-container {
+  color: $color-white0;
+  margin: 10px 20px;
+}
+
+.stat-graph-val {
+  font-family: $display-font;
+  color: $color-white0;
+  font-size: 20px;
+  background-color: $color-black1;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+.stat-graph-duration {
+  font-family: $display-font;
+  color: $color-gray;
+  font-size: 12px;
+  background-color: $color-black1;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+.stat-graph {
+  color: $color-gray;
+}
+
+.stat-graphs-on-button {
+  font-family: $display-font;
+  font-size: 18px;
+  color: $color-black0;
+  background-color: $color-blue;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.stat-graphs-off-button {
+  font-family: $display-font;
+  font-size: 18px;
+  color: $color-gray;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.stat-graphs-container {
+  padding: 10px;
+  margin: 10px 0px;
+  border: solid;
+  border-radius: 6px;
+  border-width: 2px;
+}
+
+.cal-container {
+  margin: 10px 20px;
+  background-color: $color-black1;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+.cal-date {
+  font-family: $display-font;
+  color: $color-white0;
+  font-size: 20px;
+  margin: 10px;
+}
+
+.cal-cal {
+  color: $color-white0;
+  font-size: 14px;
+  font-family: $display-font;
+}
+
+.cal-cal:selected {
+  background-color: $color-white0;
+  color: $color-black0;
+  border-radius: 6px;
+}

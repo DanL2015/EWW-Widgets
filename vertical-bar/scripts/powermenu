@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# This script handles the powermenu commands
+
+## Shutdown
+shutdown() {
+    systemctl poweroff
+}
+
+## Reboot
+reboot() {
+    systemctl reboot
+}
+
+## Lock Screen
+lock() {
+    loginctl lock-session
+}
+
+## Suspend
+suspend() {
+    systemctl suspend
+}
+
+## Logout
+logout() {
+    loginctl terminate-session ${XDG_SESSION_ID-}
+}
+
+case "$1" in
+    "shutdown") shutdown;;
+    "reboot") reboot;;
+    "lock") lock;;
+    "suspend") suspend;;
+    "logout") logout;;
+    *) echo "Unrecognized command.";;
+esac

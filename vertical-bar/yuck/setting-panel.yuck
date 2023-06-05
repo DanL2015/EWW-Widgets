@@ -1,0 +1,55 @@
+(defwidget adv-setting-button[name icon iconType command redirect state]
+  (overlay
+    (box :class "setting-${state}-button-container" :orientation "h" :tooltip "${name}"
+      (button :halign "end" :class "setting-${iconType}-button" :onclick "${command}" "${icon}")
+      (box :class "setting-separator" :halign "center")
+      (button :halign "start" :class "setting-mat-button" :onclick "${redirect}" ""))
+  ))
+
+
+(defwidget setting-button[name icon iconType command]
+  (overlay
+    (box :class "setting-on-button-container" :orientation "h" :tooltip "${name}"
+      (button :class "setting-${iconType}-button" :onclick "${command}" "${icon}"))
+  ))
+
+
+(defwidget settings[]
+  (box :height "150" :width "350" :class "settings-container" :orientation "v" :halign "center"
+    (box :class "settings-top-container" :orientation "h"
+      (setting-button :name "Capture Screen" :icon "" :iconType "mat" :command "maim | xclip -selection clipboard -t image/png")
+      (setting-button :name "Capture Selection" :icon "" :iconType "mat" :command "maim -su | xclip -selection clipboard -t image/png"))
+    (box :class "settings-bottom-container" :orientation "h"
+      (adv-setting-button :name "${wifi}" :icon "${wifiIcon}" :iconType "mat" :command "rfkill toggle wifi" :redirect "nm-connection-editor &" :state {wifi == "Disconnected" ? "off" : "on"})
+      (adv-setting-button :name "${blue}" :icon "${blueIcon}" :iconType "mat" :command "rfkill toggle bluetooth" :redirect "blueman-manager &" :state {blue == "Disconnected" ? "off" : "on"}))))
+
+(defwidget stat-graph[name val description]
+  (revealer :transition "crossfade" :reveal {cGraph == "${name}" ? "true" : "false"} :duration "500ms"
+    (overlay
+      (graph :class "stat-graph" :height "100" :min "0" :max "100" :thickness "2" :value {val == "" ? 0 : val} :dynamic "true" :time-range "30s")
+      (label :class "stat-graph-duration" :halign "start" :valign "end" :text "30 Seconds")
+      (label :class "stat-graph-val" :halign "start" :valign "start" :text "${val}${description}"))))
+
+(defwidget stat-graphs[]
+  (box :class "stat-graph-container" :width "350" :orientation "v" :space-evenly "false" :halign "center"
+    (box :class "stat-graphs-buttons-container" :orientation "h"
+      (button :class {cGraph == "RAM" ? "stat-graphs-on-button" : "stat-graphs-off-button"} :onclick "${EWW_CMD} update cGraph='RAM'" "RAM")
+      (button :class {cGraph == "CPU" ? "stat-graphs-on-button" : "stat-graphs-off-button"} :onclick "${EWW_CMD} update cGraph='CPU'" "CPU")
+      (button :class {cGraph == "TEMP" ? "stat-graphs-on-button" : "stat-graphs-off-button"} :onclick "${EWW_CMD} update cGraph='TEMP'" "TEMP"))
+    (box :class "stat-graphs-container"
+      (overlay
+        (stat-graph :name "RAM" :val "${ram}" :description "%")
+        (stat-graph :name "CPU" :val "${cpu}" :description "%")
+        (stat-graph :name "TEMP" :val "${temp}" :description "°C")))))
+
+(defwidget cal[]
+  (box :class "cal-container" :width "350" :orientation "v" :space-evenly "false" :halign "center"
+    (label :class "cal-date" :text "${day}, ${month} ${calendarDay}, ${calendarYear}")
+    (calendar :class "cal-cal" :day "${calendarDay}" :month "${calendarMonth}" :year "${calendarYear}" :show-day-names "true" )))
+
+(defwidget setting-panel[]
+  (box :width "350" :orientation "v" :space-evenly "false"
+    (settings)
+    (stat-graphs)
+    (notifs-box)
+    (cal)))

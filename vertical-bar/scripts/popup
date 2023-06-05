@@ -1,0 +1,42 @@
+#!/bin/sh
+EWW_BIN=`which eww`
+
+powermenu(){
+    local LOCK_FILE="$HOME/.cache/powermenu.lock"
+    
+    if [[ ! `pidof eww` ]]; then
+        ${EWW_BIN} daemon
+        sleep 1
+    fi
+    
+    if [[ ! -f "$LOCK_FILE" ]]; then
+        touch "$LOCK_FILE"
+        ${EWW_BIN} -c . open powermenu
+    else
+        ${EWW_BIN} -c . close powermenu
+        rm "$LOCK_FILE"
+    fi
+}
+
+panel() {
+    local LOCK_FILE="$HOME/.cache/panel.lock"
+    
+    if [[ ! `pidof eww` ]]; then
+        ${EWW_BIN} daemon
+        sleep 1
+    fi
+    
+    if [[ ! -f "$LOCK_FILE" ]]; then
+        touch "$LOCK_FILE"
+        ${EWW_BIN} -c . open panel
+    else
+        ${EWW_BIN} -c . close panel
+        rm "$LOCK_FILE"
+    fi
+}
+
+case "$1" in
+    "powermenu") powermenu;;
+    "panel") panel $2;;
+    *) echo "Unrecognized command.";;
+esac

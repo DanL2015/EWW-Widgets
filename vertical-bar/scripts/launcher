@@ -1,0 +1,11 @@
+#!/bin/bash
+
+case "$1" in
+    "ff") firefox &;;
+    "dc") discord &;;
+    "tr") kitty -d ~ &;;
+    "fm") thunar ~ &;;
+    "cd") code &;;
+    "st") xfce4-settings-manager &;;
+    *) echo "Unrecognized application.";;
+esac

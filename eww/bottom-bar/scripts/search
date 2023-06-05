@@ -1,8 +1,0 @@
-
-#!/bin/sh
-list=$(ls /usr/share/applications | grep -m 5 -i "$1")
-buf=""
-for l in $list ; do
-  buf="$buf (button :class \"item\" :halign \"start\" :valign \"fill\":onclick \"gio launch /usr/share/applications/$l &\" \"${l::-8}\")"
-done
-echo "(box :orientation \"v\" :spacing 5 :class \"apps\" $buf)" > $HOME/.cache/eww/search_items
